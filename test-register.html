@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h2>Register test</h2>
+  <button onclick="reg()">Register karein</button>
+  <pre id="out"></pre>
+  <script>
+    async function reg() {
+      const res = await fetch("http://localhost:3000/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: "Test User", email: "test@example.com", password: "test123" })
+      });
+      document.getElementById("out").textContent = JSON.stringify(await res.json(), null, 2);
+    }
+  </script>
+  <hr>
+<h2>Login test</h2>
+<button onclick="login()">Login karein</button>
+<pre id="loginOut"></pre>
+<script>
+  async function login() {
+    const res = await fetch("http://localhost:3000/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: "test@example.com", password: "test123" })
+    });
+    document.getElementById("loginOut").textContent = JSON.stringify(await res.json(), null, 2);
+  }
+</script>
+</body>
+</html>
